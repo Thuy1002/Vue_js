@@ -1,0 +1,60 @@
+<template>
+  <div class="main">
+    <div style="margin-top: 20px">
+      <!-- <Form @addProduct="addProduct" /> -->
+    </div>
+    <div class="tab">
+      <table class="table">
+        <thead>
+          <th>#</th>
+          <th>Content</th>
+          <th>date</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr v-for="item in products" :key="item.id">
+            <td></td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.created_at }}</td>
+            <td style="display: flex; margin: auto">
+              {{ item.status }}
+              <div style="margin-right: 10px" class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexCheckChecked"
+                  checked
+                  v-model="item.status"
+                />
+              </div>
+              <div>
+                <button @click="xoa(item)" style="border: none">
+                  <i class="fa-solid fa-trash" style="color: #0fcde6"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4 style="color: #0fcde6; margin-top: 50px">
+      Clear All <i class="fa-solid fa-trash" style="color: #0fcde6"></i>
+    </h4>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    products: Array, // Nhận dữ liệu danh sách sản phẩm thông qua props
+  },
+  emits: ["xoa"],
+  methods: {
+    xoa(item) {
+      this.$emit("xoa", item);
+    },
+    changestt(item) {
+      this.$emit("changestt", item);
+    },
+  },
+};
+</script>
